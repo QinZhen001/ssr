@@ -7,11 +7,11 @@ const Home = () => {
   const dispatch = useDispatch()
   const homeData = useSelector((state) => state.home)
 
-
   useEffect(() => {
     // 前端请求:
     // 1.防止后端请求数据出错 前端再次请求
     // 2.前端接管后 前端路由跳转
+    console.log("client Home fetch data")
     dispatch(fetchHomeData);
   }, [])
 
@@ -22,8 +22,31 @@ const Home = () => {
       </Helmet>
     );
   };
-  
+
   const handleClick = () => {
     console.log('我被点击了！');
   }
+
+  return (
+    <div>
+      {renderHead()}
+      <h1>首页</h1>
+      <ul>
+        {homeData?.articles?.map((article) => (
+          <li key={article?.id}>
+            <p>文章标题：{article?.title}</p>
+            <p>文章内容：{article?.content}</p>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleClick}>点我</button>
+    </div>
+  );
 }
+
+// 服务器请求
+Home.getInitialData = async (store) => {
+  return store.dispatch(fetchHomeData);
+}
+
+export default Home;
