@@ -1,0 +1,25 @@
+/coverage
+/demo/dist
+dist/
+node_modules/
+*.log
+.idea
+package-lock.json
+.DS_Store
+.cache
+.env
+.vscode
+.parcel-cache/
+*.orig
+*.tsbuildinfo
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Website
+site/out
+.next
